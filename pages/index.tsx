@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import Head from "next/head";
-import { typedFormik } from "../utils/useTypedFormik";
+import { typedFormik } from "../utils/typedFormik";
 
 const initialValues = {
   name: "hello",
@@ -10,14 +10,15 @@ const initialValues = {
   },
 };
 
-const { TypedField } = typedFormik({ initialValues });
+const { Field, ErrorMessage } = typedFormik({
+  initialValues,
+});
 
 export default function Home() {
-  const initalValues = {};
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Typed fields</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -34,9 +35,15 @@ export default function Home() {
         }}
       >
         <Form>
-          <TypedField name='name' />
-          <TypedField name='social.facebook' />
-          <TypedField name='social.facebook' />
+          <Field name='name' />
+          <ErrorMessage name='name' />
+
+          <Field name='social.twitter' />
+          <ErrorMessage name='social.twitter' />
+
+          <Field name='social.facebook' />
+          <ErrorMessage name='social.facebook' />
+
           <button type='submit'>Submit</button>
         </Form>
       </Formik>
