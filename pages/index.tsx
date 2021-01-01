@@ -10,7 +10,7 @@ const initialValues = {
   },
 };
 
-const { Field, ErrorMessage, Label } = typedFormik({
+const { Field, ErrorMessage } = typedFormik({
   initialValues,
 });
 
@@ -44,21 +44,14 @@ export default function Home() {
         }}
       >
         <Form>
-          <p>
-            <Label for='name'>name:</Label>
-            <Field name='name' />
-            <ErrorMessage name='name' />
-          </p>
-          <p>
-            <Label for='social.twitter'>twitter:</Label>
-            <Field name='social.twitter' />
-            <ErrorMessage name='social.twitter' />
-          </p>
-          <p>
-            <Label for='social.facebook'>facebook:</Label>
-            <Field name='social.facebook' />
-            <ErrorMessage name='social.facebook' />
-          </p>
+          <Field name='name' />
+          <ErrorMessage name='name' />
+
+          <Field name='social.twitter' />
+          <ErrorMessage name='social.twitter' />
+
+          <Field name='social.facebook' />
+          <ErrorMessage name='social.facebook' />
 
           <button type='submit'>Submit</button>
         </Form>

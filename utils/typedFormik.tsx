@@ -1,5 +1,4 @@
 import { ErrorMessage, Field } from "formik";
-import { HTMLAttributes } from "react";
 import { LeafPath, Path } from "./types";
 
 type FieldProps = React.ComponentProps<typeof Field>;
@@ -18,14 +17,6 @@ type TypedErrorMessageProps<TValues, TPath extends LeafPath<TValues>> = Omit<
   name: TPath;
 };
 
-type HTMLLabelProps = HTMLAttributes<HTMLLabelElement>;
-type TypedLabelProps<TValues, TPath extends LeafPath<TValues>> = Omit<
-  HTMLLabelProps,
-  "htmlFor"
-> & {
-  for: TPath;
-};
-
 export function typedFormik<TValues>({}: { initialValues: TValues }) {
   return {
     Field: function TypedField<TPath extends LeafPath<TValues>>(
@@ -36,14 +27,7 @@ export function typedFormik<TValues>({}: { initialValues: TValues }) {
     ErrorMessage: function TypedErrorMessage<TPath extends LeafPath<TValues>>(
       props: TypedErrorMessageProps<TValues, TPath>,
     ) {
-      return <ErrorMessage {...props} />;
-    },
-    Label: function TypedLabel<TPath extends LeafPath<TValues>>(
-      props: TypedLabelProps<TValues, TPath>,
-    ) {
-      const { for: htmlFor, ...rest } = props;
-
-      return <label {...rest} htmlFor={htmlFor} />;
+      return <Field {...props} />;
     },
   };
 }
