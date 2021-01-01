@@ -37,7 +37,7 @@ export function typedFormik<TValues>({}: { initialValues: TValues }) {
     ) {
       return <Field {...props} />;
     },
-    useField: function useTypedField<TPath extends LeafPath<TValues>>(
+    useField: function useTypedField<TPath extends LeafPath<TValues> & string>(
       props: TypedUseField<TValues, TPath>,
     ) {
       const [field, meta, helpers] = useField(props);
